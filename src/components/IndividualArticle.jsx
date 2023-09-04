@@ -5,6 +5,7 @@ import { getArticleById } from "../../apicalls";
 const IndividualArticle = () => {
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
+  console.log("test");
 
   useEffect(() => {
     getArticleById(article_id).then((article) => {
