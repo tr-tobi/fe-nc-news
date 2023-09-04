@@ -1,16 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getArticleById } from "../../apicalls";
 
 const IndividualArticle = () => {
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
+
   useEffect(() => {
-    axios
-      .get(`https://nc-news-g9x6.onrender.com/api/articles/${article_id}`)
-      .then((response) => {
-        setArticle(response.data.article);
-      });
+    getArticleById(article_id).then((article) => {
+      setArticle(article);
+    });
   }, []);
 
   return (
