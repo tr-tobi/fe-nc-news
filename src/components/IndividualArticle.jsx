@@ -1,16 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getArticleById } from "../../apicalls";
 
 const IndividualArticle = () => {
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
+
   useEffect(() => {
-    axios
-      .get(`https://nc-news-g9x6.onrender.com/api/articles/${article_id}`)
-      .then((response) => {
-        setArticle(response.data.article);
-      });
+    getArticleById(article_id).then((article) => {
+      setArticle(article);
+    });
   }, []);
 
   return (
@@ -18,6 +17,9 @@ const IndividualArticle = () => {
       <h2>{article.title}</h2>
       <p>By: {article.author}</p>
       <img src={article.article_img_url} alt={article.topic} />
+      <section>
+        <p>{article.body}</p>
+      </section>
       <aside>
         <p>Date Posted: {article.created_at}</p>
         <p>Number of Comments: {article.comment_count}</p>
