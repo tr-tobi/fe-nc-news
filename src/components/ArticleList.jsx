@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import ArticleCard from "./ArticleCard";
+import { getAllArticles } from "../../apicalls";
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://nc-news-g9x6.onrender.com/api/articles")
-      .then((response) => {
-        setArticles(response.data.articles);
-      });
+    getAllArticles().then((articlesFromApi) => {
+      setArticles(articlesFromApi);
+    });
   }, []);
 
   return articles.map(
