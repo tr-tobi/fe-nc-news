@@ -15,7 +15,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<ArticleList />} />
-        <Route path="/article/:article_id" element={<IndividualArticle />} />
+        <Route path="/articles/:article_id" element={<IndividualArticle />} />
       </Routes>
     </>
   );

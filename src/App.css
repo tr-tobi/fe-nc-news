@@ -10,6 +10,10 @@ h1 {
   border: solid;
 }
 
+p {
+  color: black;
+}
+
 .article-card {
   background-color: rgb(197, 197, 201);
   border: solid;
