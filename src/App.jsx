@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import ArticleList from "./components/ArticleList";
 import { Route, Routes } from "react-router-dom";
+import IndividualArticle from "./components/IndividualArticle";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<ArticleList />} />
+        <Route path="/article/:article_id" element={<IndividualArticle />} />
       </Routes>
     </>
   );
