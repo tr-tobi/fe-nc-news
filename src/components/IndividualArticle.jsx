@@ -18,6 +18,9 @@ const IndividualArticle = () => {
       <h2>{article.title}</h2>
       <p>By: {article.author}</p>
       <img src={article.article_img_url} alt={article.topic} />
+      <section>
+        <p>{article.body}</p>
+      </section>
       <aside>
         <p>Date Posted: {article.created_at}</p>
         <p>Number of Comments: {article.comment_count}</p>
