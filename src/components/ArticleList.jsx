@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
-import { getAllArticles } from "../../apicalls";
+import { getAllArticles } from "../../utils/apicalls";
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     getAllArticles().then((articlesFromApi) => {
       setArticles(articlesFromApi);
+      setIsLoading(false);
     });
   }, []);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return articles.map(
     ({

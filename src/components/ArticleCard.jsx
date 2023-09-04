@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { dateTimeSeperator } from "../../utils/function";
 
 const ArticleCard = ({
   article_id,
@@ -10,15 +11,15 @@ const ArticleCard = ({
   topic,
   votes,
 }) => {
-  const dateTimeSeperator = created_at.replace("T", " At ").split(".");
+  const convertedTime = dateTimeSeperator(created_at);
   return (
-    <div className="article-card">
+    <div className="individual-card">
       <Link to={`/articles/${article_id}`}>
         <h2>{title}</h2>
         <p>By: {author}</p>
         <img src={article_img_url} alt={topic} />
         <aside>
-          <p>Date Posted: {dateTimeSeperator[0]}</p>
+          <p>Date Posted: {convertedTime}</p>
           <p>Number of Comments: {comment_count}</p>
           <p>Votes: {votes}</p>
         </aside>
