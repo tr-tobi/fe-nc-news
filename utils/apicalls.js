@@ -21,3 +21,12 @@ export const getCommentByArticleId = (article_id) => {
     return data.comments;
   });
 };
+
+export const patchArticleVote = (value, article_id) => {
+  const updatedArticle = { inc_votes: value };
+  return newsApp
+    .patch(`/articles/${article_id}`, updatedArticle)
+    .then(({ data }) => {
+      return data;
+    });
+};
