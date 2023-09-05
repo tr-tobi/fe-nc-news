@@ -12,14 +12,24 @@ const IndividualArticle = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getArticleById(article_id).then((article) => {
-      setArticle(article);
-    });
-    getCommentByArticleId(article_id).then((comments) => {
-      setComments(comments);
-      setIsLoading(false);
-    });
-  }, []);
+
+    getArticleById(article_id)
+      .then((article) => {
+        setArticle(article);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+      });
+
+    getCommentByArticleId(article_id)
+      .then((comments) => {
+        setComments(comments);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+      });
+  }, [article_id]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -43,17 +53,21 @@ const IndividualArticle = () => {
         <button>DownVote</button>
       </div>
       <h2>Comments</h2>
-      {comments.map(({ comment_id, body, author, votes, created_at }) => {
-        return (
-          <CommentCard
-            key={comment_id}
-            body={body}
-            author={author}
-            votes={votes}
-            created_at={created_at}
-          />
-        );
-      })}
+      {comments.length === 0 ? (
+        <p>No comments available for this article.</p>
+      ) : (
+        comments.map(({ comment_id, body, author, votes, created_at }) => {
+          return (
+            <CommentCard
+              key={comment_id}
+              body={body}
+              author={author}
+              votes={votes}
+              created_at={created_at}
+            />
+          );
+        })
+      )}
     </>
   );
 };
