@@ -24,6 +24,33 @@ p {
   font-weight: bold;
 }
 
+textarea {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.comment-card {
+  background-color: rgb(143, 143, 198);
+  border: solid;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+.center-button {
+  align-self: center;
+}
+
+.container-padding {
+  padding-top: 10px;
+}
+label {
+  font-size: larger;
+  padding-bottom: 10px;
+}
+
 .comment-body {
   font-weight: lighter;
 }
