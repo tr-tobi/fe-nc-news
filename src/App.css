@@ -8,24 +8,33 @@
 h1 {
   background-color: rgb(197, 197, 201);
   border: solid;
+  border-radius: 10px;
 }
 
 p {
   color: black;
 }
 
-.article-card {
+.individual-card {
   background-color: rgb(197, 197, 201);
   border: solid;
+  border-radius: 10px;
   padding: 10px;
   margin: 10px;
   font-weight: bold;
+}
+
+.comment-body {
+  font-weight: lighter;
 }
 aside {
   text-align: left;
 }
 
 section {
+  text-align: left;
+}
+.text-left {
   text-align: left;
 }
 

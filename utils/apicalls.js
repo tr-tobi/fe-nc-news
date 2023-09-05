@@ -15,3 +15,9 @@ export const getArticleById = (article_id) => {
     return data.article;
   });
 };
+
+export const getCommentByArticleId = (article_id) => {
+  return newsApp.get(`/articles/${article_id}/comments`).then(({ data }) => {
+    return data.comments;
+  });
+};
