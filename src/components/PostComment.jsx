@@ -9,6 +9,7 @@ const PostComment = ({ article_id, comments, setComments }) => {
   const handleChange = (event) => {
     setComment(event.target.value);
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsDisabled(true);
@@ -30,6 +31,8 @@ const PostComment = ({ article_id, comments, setComments }) => {
           cols="30"
           rows="10"
           placeholder="Type comment here"
+          onChange={handleChange}
+          value={isDisabled ? "" : comment}
         />
         <button
           value={isPosted ? "" : comment}
