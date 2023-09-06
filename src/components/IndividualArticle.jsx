@@ -6,6 +6,7 @@ import {
   patchArticleVote,
 } from "../../utils/apicalls";
 import CommentCard from "./CommentCard";
+import PostComment from "./PostComment";
 const IndividualArticle = () => {
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
@@ -102,6 +103,11 @@ const IndividualArticle = () => {
           </button>
         </div>
       </div>
+      <PostComment
+        article_id={article_id}
+        comments={comments}
+        setComments={setComments}
+      />
       <h2>Comments</h2>
       {comments.length === 0 ? (
         <p>No comments available for this article.</p>
