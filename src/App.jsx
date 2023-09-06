@@ -7,6 +7,8 @@ import Navigation from "./components/Navigation";
 import ArticleList from "./components/ArticleList";
 import { Route, Routes } from "react-router-dom";
 import IndividualArticle from "./components/IndividualArticle";
+import Topics from "./components/Topics";
+import ArticlesByTopicList from "./components/ArticlesByTopicsList";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <Routes>
         <Route path="/" element={<ArticleList />} />
         <Route path="/articles/:article_id" element={<IndividualArticle />} />
+        <Route path="/topics" element={<Topics />} />
+        <Route path="/topics/:topic" element={<ArticlesByTopicList />} />
       </Routes>
     </>
   );
