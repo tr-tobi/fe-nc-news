@@ -49,3 +49,19 @@ export const patchArticleVote = (value, article_id) => {
       return data;
     });
 };
+
+export const getTopics = () => {
+  return newsApp.get("/topics").then(({ data }) => {
+    const arrOfTopics = [];
+    for (const topic of data.topics) {
+      arrOfTopics.push(topic.slug);
+    }
+    return arrOfTopics;
+  });
+};
+
+export const getArticleByTopic = (topic) => {
+  return newsApp.get(`/articles?topic=${topic}`).then(({ data }) => {
+    return data.articles;
+  });
+};
