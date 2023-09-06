@@ -18,7 +18,17 @@ export const getArticleById = (article_id) => {
 
 export const getCommentByArticleId = (article_id) => {
   return newsApp.get(`/articles/${article_id}/comments`).then(({ data }) => {
-    return data.comments;
+    const arrOfComments = data.comments;
+    console.log(arrOfComments);
+    console.log(new Date(arrOfComments[0].created_at).getTime());
+    arrOfComments.sort(function (a, b) {
+      return (
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      );
+    });
+
+    console.log(arrOfComments);
+    return arrOfComments;
   });
 };
 
