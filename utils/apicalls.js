@@ -4,12 +4,17 @@ const newsApp = axios.create({
   baseURL: "https://nc-news-g9x6.onrender.com/api",
 });
 
-export const getAllArticles = (sort, order) => {
+export const getAllArticles = (sort, order, topic) => {
+  console.log(
+    `/articles?sort_by=${sort ? sort : "created_at"}&order=${
+      order ? order : "desc"
+    }&topic=${topic ? topic : ""}`
+  );
   return newsApp
     .get(
       `/articles?sort_by=${sort ? sort : "created_at"}&order=${
         order ? order : "desc"
-      }`
+      }&topic=${topic ? topic : ""}`
     )
     .then(({ data }) => {
       return data.articles;
@@ -79,11 +84,5 @@ export const getTopics = () => {
       arrOfTopics.push(topic.slug);
     }
     return arrOfTopics;
-  });
-};
-
-export const getArticleByTopic = (topic) => {
-  return newsApp.get(`/articles?topic=${topic}`).then(({ data }) => {
-    return data.articles;
   });
 };
