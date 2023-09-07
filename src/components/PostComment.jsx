@@ -9,6 +9,7 @@ const PostComment = ({ article_id, comments, setComments }) => {
   const [isPosted, setIsPosted] = useState(false);
   const [posting, setPosting] = useState(false);
   const { user } = useContext(UserContext);
+  const [isError, setIsError] = useState(false);
 
   const handleChange = (event) => {
     setComment(event.target.value);
@@ -20,12 +21,16 @@ const PostComment = ({ article_id, comments, setComments }) => {
     setIsPosted(true);
     setPosting(true);
 
-    postCommentByArticleId(article_id, comment, user).then((newComment) => {
-      setPosting(false);
-      setComments((currentComments) => {
-        return [newComment.comment, ...currentComments];
+    postCommentByArticleId(article_id, comment, user)
+      .then((newComment) => {
+        setPosting(false);
+        setComments((currentComments) => {
+          return [newComment.comment, ...currentComments];
+        });
+      })
+      .catch((err) => {
+        setIsError(true);
       });
-    });
     setComment(comment);
   };
 
@@ -46,6 +51,8 @@ const PostComment = ({ article_id, comments, setComments }) => {
           value={isDisabled ? "" : comment}
         />
         <p hidden={!isPosted}>Comment Posted!</p>
+        <p hidden={!isError}>Error Posting Comment!</p>
+
         <button
           value={isPosted ? "" : comment}
           onClick={handleSubmit}
