@@ -17,6 +17,7 @@ const PostComment = ({ article_id, comments, setComments }) => {
     event.preventDefault();
     setIsDisabled(true);
     setIsPosted(true);
+
     postCommentByArticleId(article_id, comment, user).then((newComment) => {
       setComments((currentComments) => {
         return [newComment.comment, ...currentComments];

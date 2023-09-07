@@ -7,6 +7,7 @@ import {
 } from "../../utils/apicalls";
 import CommentCard from "./CommentCard";
 import PostComment from "./PostComment";
+
 const IndividualArticle = () => {
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
@@ -104,6 +105,7 @@ const IndividualArticle = () => {
         </div>
       </div>
       <PostComment
+        article={article}
         article_id={article_id}
         comments={comments}
         setComments={setComments}
