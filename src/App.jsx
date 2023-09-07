@@ -20,7 +20,7 @@ function App() {
       <Navigation sort={sort} order={order} />
       <Routes>
         <Route
-          path="/"
+          path={"/"}
           element={
             <ArticleList
               order={order}
