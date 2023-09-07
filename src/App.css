@@ -24,6 +24,51 @@ p {
   font-weight: bold;
 }
 
+.user-card {
+  background-color: rgb(143, 143, 198);
+  border: solid;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  border-radius: 10px;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  border: solid black;
+  border-radius: 10px;
+
+  background-color: rgb(143, 143, 198);
+}
+
+select {
+  margin-left: 20px;
+}
+
 .delete-card {
   margin-top: 10px;
 }

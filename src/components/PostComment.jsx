@@ -7,6 +7,7 @@ const PostComment = ({ article_id, comments, setComments }) => {
   const [comment, setComment] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [isPosted, setIsPosted] = useState(false);
+  const [posting, setPosting] = useState(false);
   const { user } = useContext(UserContext);
 
   const handleChange = (event) => {
@@ -17,14 +18,20 @@ const PostComment = ({ article_id, comments, setComments }) => {
     event.preventDefault();
     setIsDisabled(true);
     setIsPosted(true);
+    setPosting(true);
 
     postCommentByArticleId(article_id, comment, user).then((newComment) => {
+      setPosting(false);
       setComments((currentComments) => {
         return [newComment.comment, ...currentComments];
       });
     });
     setComment(comment);
   };
+
+  if (posting) {
+    return <p>Posting... </p>;
+  }
 
   return (
     <div className="container-padding">
@@ -38,11 +45,12 @@ const PostComment = ({ article_id, comments, setComments }) => {
           onChange={handleChange}
           value={isDisabled ? "" : comment}
         />
+        <p hidden={!isPosted}>Comment Posted!</p>
         <button
           value={isPosted ? "" : comment}
           onClick={handleSubmit}
           className="center-button"
-          disabled={isDisabled ? true : false}
+          disabled={isDisabled || comment === "" ? true : false}
         >
           Post Comment
         </button>

@@ -18,6 +18,7 @@ const IndividualArticle = () => {
   const [upVoteValue, setUpVoteValue] = useState(1);
   const [downVoteValue, setDownVoteValue] = useState(-1);
   const [votes, setVotes] = useState(0);
+  const [isError, setIsError] = useState(false);
 
   const handleIncr = (event) => {
     event.preventDefault();
@@ -57,6 +58,7 @@ const IndividualArticle = () => {
       })
       .catch((err) => {
         setIsLoading(false);
+        setIsError(true);
       });
 
     getCommentByArticleId(article_id)
@@ -65,9 +67,14 @@ const IndividualArticle = () => {
         setIsLoading(false);
       })
       .catch((err) => {
+        setIsError(true);
         setIsLoading(false);
       });
   }, [article_id]);
+
+  if (isError) {
+    return <h2>Article doesnt exist</h2>;
+  }
 
   if (isLoading) {
     return <p>Loading...</p>;

@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { getAllUsers } from "../../utils/apicalls";
 import { UserContext } from "./User";
 
-const Navigation = ({ sort, order }) => {
+const Navigation = () => {
   const [users, setUsers] = useState([]);
 
   const { user, setUser } = useContext(UserContext);
@@ -31,7 +31,7 @@ const Navigation = ({ sort, order }) => {
           </li>
         </ul>
       </nav>
-      <section>
+      <section className="user-card">
         <p>Logged in User:</p>
         <select name="users" id="users" onChange={handleChange}>
           {users.map((user) => {
