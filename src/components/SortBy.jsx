@@ -1,9 +1,10 @@
 import { getAllArticles } from "../../utils/apicalls";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const SortBy = ({ setSort, setOrder, setArticles, sort, order, articles }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { topic } = useParams();
 
   const handleSort = (event) => {
     event.preventDefault();
@@ -20,7 +21,7 @@ const SortBy = ({ setSort, setOrder, setArticles, sort, order, articles }) => {
   };
   useEffect(() => {
     setIsLoading(true);
-    getAllArticles(sort, order).then((articlesFromApi) => {
+    getAllArticles(sort, order, topic).then((articlesFromApi) => {
       setArticles(articlesFromApi);
       setIsLoading(false);
     });

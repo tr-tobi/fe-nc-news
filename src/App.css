@@ -24,6 +24,14 @@ p {
   font-weight: bold;
 }
 
+.delete-card {
+  margin-top: 10px;
+}
+.delete-card:hover {
+  margin-top: 10px;
+  background-color: red;
+}
+
 textarea {
   color: white;
   margin-bottom: 10px;

@@ -120,6 +120,9 @@ const IndividualArticle = () => {
               author={author}
               votes={votes}
               created_at={created_at}
+              comment_id={comment_id}
+              comments={comments}
+              setComments={setComments}
             />
           );
         })

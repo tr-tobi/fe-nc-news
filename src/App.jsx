@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -8,7 +8,6 @@ import ArticleList from "./components/ArticleList";
 import { Route, Routes } from "react-router-dom";
 import IndividualArticle from "./components/IndividualArticle";
 import Topics from "./components/Topics";
-import ArticlesByTopicList from "./components/ArticlesByTopicsList";
 
 function App() {
   const [sort, setSort] = useState("");
@@ -32,7 +31,17 @@ function App() {
         />
         <Route path="/articles/:article_id" element={<IndividualArticle />} />
         <Route path="/topics" element={<Topics />} />
-        <Route path="/topics/:topic" element={<ArticlesByTopicList />} />
+        <Route
+          path="/topics/:topic"
+          element={
+            <ArticleList
+              order={order}
+              setSort={setSort}
+              setOrder={setOrder}
+              sort={sort}
+            />
+          }
+        />
       </Routes>
     </>
   );

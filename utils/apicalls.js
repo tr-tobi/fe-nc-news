@@ -4,18 +4,31 @@ const newsApp = axios.create({
   baseURL: "https://nc-news-g9x6.onrender.com/api",
 });
 
-export const getAllArticles = (sort, order) => {
-  console.log(`/articles?sort_by=${sort}&order=${order}`);
-
+export const getAllArticles = (sort, order, topic) => {
+  console.log(
+    `/articles?sort_by=${sort ? sort : "created_at"}&order=${
+      order ? order : "desc"
+    }&topic=${topic ? topic : ""}`
+  );
   return newsApp
     .get(
       `/articles?sort_by=${sort ? sort : "created_at"}&order=${
         order ? order : "desc"
-      }`
+      }&topic=${topic ? topic : ""}`
     )
     .then(({ data }) => {
       return data.articles;
     });
+};
+
+export const getAllUsers = () => {
+  return newsApp.get("/users").then(({ data }) => {
+    const arrOfUsernames = [];
+    for (const user of data.users) {
+      arrOfUsernames.push(user.username);
+    }
+    return arrOfUsernames;
+  });
 };
 
 export const getArticleById = (article_id) => {
@@ -37,9 +50,9 @@ export const getCommentByArticleId = (article_id) => {
   });
 };
 
-export const postCommentByArticleId = (article_id, body) => {
+export const postCommentByArticleId = (article_id, body, user) => {
   const obj = {
-    author: "cooljmessy",
+    author: user,
     body: body,
   };
   return newsApp
@@ -58,6 +71,12 @@ export const patchArticleVote = (value, article_id) => {
     });
 };
 
+export const deleteCommentById = (comment_id) => {
+  return newsApp.delete(`/comments/${comment_id}`).then(({ data }) => {
+    return data;
+  });
+};
+
 export const getTopics = () => {
   return newsApp.get("/topics").then(({ data }) => {
     const arrOfTopics = [];
@@ -65,11 +84,5 @@ export const getTopics = () => {
       arrOfTopics.push(topic.slug);
     }
     return arrOfTopics;
-  });
-};
-
-export const getArticleByTopic = (topic) => {
-  return newsApp.get(`/articles?topic=${topic}`).then(({ data }) => {
-    return data.articles;
   });
 };

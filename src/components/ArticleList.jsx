@@ -7,15 +7,6 @@ const ArticleList = ({ setSort, setOrder, order, sort }) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = () => {
-    useEffect(() => {
-      setIsLoading(true);
-      getAllArticles("created_at", "desc").then((articlesFromApi) => {
-        setArticles(articlesFromApi);
-        setIsLoading(false);
-      });
-    }, [sort, order]);
-  };
   if (isLoading) {
     return <p>Loading...</p>;
   }

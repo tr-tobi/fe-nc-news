@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { postCommentByArticleId } from "../../utils/apicalls";
+import { UserContext } from "./User";
+import { useContext } from "react";
 
 const PostComment = ({ article_id, comments, setComments }) => {
   const [comment, setComment] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [isPosted, setIsPosted] = useState(false);
+  const { user } = useContext(UserContext);
 
   const handleChange = (event) => {
     setComment(event.target.value);
@@ -14,7 +17,7 @@ const PostComment = ({ article_id, comments, setComments }) => {
     event.preventDefault();
     setIsDisabled(true);
     setIsPosted(true);
-    postCommentByArticleId(article_id, comment).then((newComment) => {
+    postCommentByArticleId(article_id, comment, user).then((newComment) => {
       setComments((currentComments) => {
         return [newComment.comment, ...currentComments];
       });
