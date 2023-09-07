@@ -5,8 +5,6 @@ const newsApp = axios.create({
 });
 
 export const getAllArticles = (sort, order) => {
-  console.log(`/articles?sort_by=${sort}&order=${order}`);
-
   return newsApp
     .get(
       `/articles?sort_by=${sort ? sort : "created_at"}&order=${
@@ -16,6 +14,16 @@ export const getAllArticles = (sort, order) => {
     .then(({ data }) => {
       return data.articles;
     });
+};
+
+export const getAllUsers = () => {
+  return newsApp.get("/users").then(({ data }) => {
+    const arrOfUsernames = [];
+    for (const user of data.users) {
+      arrOfUsernames.push(user.username);
+    }
+    return arrOfUsernames;
+  });
 };
 
 export const getArticleById = (article_id) => {
@@ -37,9 +45,9 @@ export const getCommentByArticleId = (article_id) => {
   });
 };
 
-export const postCommentByArticleId = (article_id, body) => {
+export const postCommentByArticleId = (article_id, body, user) => {
   const obj = {
-    author: "cooljmessy",
+    author: user,
     body: body,
   };
   return newsApp
@@ -56,6 +64,12 @@ export const patchArticleVote = (value, article_id) => {
     .then(({ data }) => {
       return data;
     });
+};
+
+export const deleteCommentById = (comment_id) => {
+  return newsApp.delete(`/comments/${comment_id}`).then(({ data }) => {
+    return data;
+  });
 };
 
 export const getTopics = () => {
