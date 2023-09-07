@@ -4,10 +4,18 @@ const newsApp = axios.create({
   baseURL: "https://nc-news-g9x6.onrender.com/api",
 });
 
-export const getAllArticles = () => {
-  return newsApp.get("/articles").then(({ data }) => {
-    return data.articles;
-  });
+export const getAllArticles = (sort, order) => {
+  console.log(`/articles?sort_by=${sort}&order=${order}`);
+
+  return newsApp
+    .get(
+      `/articles?sort_by=${sort ? sort : "created_at"}&order=${
+        order ? order : "desc"
+      }`
+    )
+    .then(({ data }) => {
+      return data.articles;
+    });
 };
 
 export const getArticleById = (article_id) => {

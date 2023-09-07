@@ -11,12 +11,25 @@ import Topics from "./components/Topics";
 import ArticlesByTopicList from "./components/ArticlesByTopicsList";
 
 function App() {
+  const [sort, setSort] = useState("");
+  const [order, setOrder] = useState("");
+
   return (
     <>
       <Header />
-      <Navigation />
+      <Navigation sort={sort} order={order} />
       <Routes>
-        <Route path="/" element={<ArticleList />} />
+        <Route
+          path="/"
+          element={
+            <ArticleList
+              order={order}
+              setSort={setSort}
+              setOrder={setOrder}
+              sort={sort}
+            />
+          }
+        />
         <Route path="/articles/:article_id" element={<IndividualArticle />} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:topic" element={<ArticlesByTopicList />} />
