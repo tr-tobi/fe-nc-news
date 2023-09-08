@@ -67,7 +67,6 @@ const IndividualArticle = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log("inside error");
         setIsError(true);
         setIsLoading(false);
       });
