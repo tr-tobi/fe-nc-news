@@ -10,6 +10,10 @@ Initial wireframe for this project can be seen [below](#application-wireframe-an
 
 https://trtobi-news.netlify.app/
 
+## Link to RESTful API
+
+https://github.com/tr-tobi/nc-news
+
 ## Installation
 
 1. [Node.js](https://nodejs.org/en) is installed:
