@@ -1,13 +1,38 @@
-# React + Vite
+# NorthCoders News React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The front-end for a full stack news website built on my [RESTful API](https://github.com/tr-tobi/nc-news). User is able to view articles, filtering the articles by topic and the user can sort the articles by title, author and date posted. This can then be displayed in ascending or descending order.
 
-Currently, two official plugins are available:
+A user is also able to select a username and post a comment to a specific article and they are only able to delete their comments.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Initial wireframe for this project can be seen [below](#application-wireframe-and-tree).
 
-- Application Wireframe and Tree:
+## Link to hosted Website
+
+https://trtobi-news.netlify.app/
+
+## Installation
+
+1. [Node.js](https://nodejs.org/en) is installed:
+
+2. Fork this repo and clone it using:
+
+```
+git clone https://github.com/tr-tobi/fe-nc-news.git
+```
+
+3. cd to the root file of the repo and install the dependencies using:
+
+```
+npm install
+```
+
+The minimum version of Node.js is:
+
+```
+v20.3.1
+```
+
+## Application Wireframe and Tree:
 
 ![Alt text](image-2.png)
 ![Alt text](image.png)
