@@ -15,7 +15,7 @@ const ArticleCard = ({
   return (
     <div className="individual-card">
       <Link to={`/articles/${article_id}`}>
-        <h2>{title}</h2>
+        <h2 className="title-colour">{title}</h2>
         <p>By: {author}</p>
         <img src={article_img_url} alt={topic} />
         <aside>

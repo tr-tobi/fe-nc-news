@@ -121,6 +121,12 @@ label {
   padding-bottom: 10px;
 }
 
+.title-colour {
+  color: black;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
 .comment-body {
   font-weight: lighter;
 }
