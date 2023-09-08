@@ -5,11 +5,6 @@ const newsApp = axios.create({
 });
 
 export const getAllArticles = (sort, order, topic) => {
-  console.log(
-    `/articles?sort_by=${sort ? sort : "created_at"}&order=${
-      order ? order : "desc"
-    }&topic=${topic ? topic : ""}`
-  );
   return newsApp
     .get(
       `/articles?sort_by=${sort ? sort : "created_at"}&order=${

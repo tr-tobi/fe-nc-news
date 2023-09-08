@@ -5,18 +5,20 @@ import "./App.css";
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import ArticleList from "./components/ArticleList";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import IndividualArticle from "./components/IndividualArticle";
 import Topics from "./components/Topics";
-
+import NotFoundPage from "./components/NotFoundPage";
 function App() {
   const [sort, setSort] = useState("");
   const [order, setOrder] = useState("");
+  const [topics, setTopics] = useState([]);
 
   return (
     <>
       <Header />
-      <Navigation sort={sort} order={order} />
+      <Navigation />
+
       <Routes>
         <Route
           path="/"
@@ -30,7 +32,10 @@ function App() {
           }
         />
         <Route path="/articles/:article_id" element={<IndividualArticle />} />
-        <Route path="/topics" element={<Topics />} />
+        <Route
+          path="/topics"
+          element={<Topics topics={topics} setTopics={setTopics} />}
+        />
         <Route
           path="/topics/:topic"
           element={
@@ -39,9 +44,11 @@ function App() {
               setSort={setSort}
               setOrder={setOrder}
               sort={sort}
+              topics={topics}
             />
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );

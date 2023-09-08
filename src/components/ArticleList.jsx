@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import { getAllArticles } from "../../utils/apicalls";
 import SortBy from "./SortBy";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ArticleList = ({ setSort, setOrder, order, sort }) => {
   const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { topic } = useParams();
 
-  if (isLoading) {
-    return <p>Loading...</p>;
+  if (
+    !["coding", "football", "cooking"].includes(topic) &&
+    topic !== undefined
+  ) {
+    return <h2>Topic does not exist</h2>;
   }
 
   return (

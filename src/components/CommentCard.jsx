@@ -14,41 +14,58 @@ const CommentCard = ({
 }) => {
   const convertedTime = dateTimeSeperator(created_at);
   const [isDeleted, setisDeleted] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useContext(UserContext);
 
   const handleClick = (event) => {
+    setIsLoading(true);
     event.preventDefault();
-    deleteCommentById(comment_id).then(() => {
-      setisDeleted(true);
-    });
+    deleteCommentById(comment_id)
+      .then(() => {
+        setisDeleted(true);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsError(true);
+        setIsLoading(false);
+      });
 
     return;
   };
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
-    <div hidden={isDeleted} className="individual-card">
-      <p className="text-left">
-        {author} at {convertedTime}:
-      </p>
-      <section>
-        <p className="comment-body">{body}</p>
-      </section>
-      <div>
-        <button>Upvote</button>
-        <p>Votes: {votes}</p>
-        <button>DownVote</button>
+    <>
+      <p hidden={!isDeleted}>Comment Successfully Deleted!</p>
+      <p hidden={!isError}>Comment Could Not Be Deleted</p>
+      <div hidden={isDeleted} className="individual-card">
+        <p className="text-left">
+          {author} at {convertedTime}:
+        </p>
+        <section>
+          <p className="comment-body">{body}</p>
+        </section>
+        <div>
+          <button>Upvote</button>
+          <p>Votes: {votes}</p>
+          <button>DownVote</button>
+        </div>
+        <form>
+          <button
+            onClick={handleClick}
+            hidden={user !== author}
+            className="delete-card"
+          >
+            Delete Comment
+          </button>
+        </form>
       </div>
-      <form>
-        <button
-          onClick={handleClick}
-          hidden={user !== author}
-          className="delete-card"
-        >
-          Delete Comment
-        </button>
-      </form>
-    </div>
+    </>
   );
 };
 
