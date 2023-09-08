@@ -17,40 +17,45 @@ const ArticleList = ({ setSort, setOrder, order, sort }) => {
 
   return (
     <>
-      <SortBy
-        setArticles={setArticles}
-        setOrder={setOrder}
-        order={order}
-        sort={sort}
-        setSort={setSort}
-        articles={articles}
-      />
-      {articles.map(
-        ({
-          article_id,
-          article_img_url,
-          author,
-          comment_count,
-          created_at,
-          title,
-          topic,
-          votes,
-        }) => {
-          return (
-            <ArticleCard
-              key={article_id}
-              article_id={article_id}
-              article_img_url={article_img_url}
-              author={author}
-              comment_count={comment_count}
-              created_at={created_at}
-              title={title}
-              topic={topic}
-              votes={votes}
-            />
-          );
-        }
-      )}
+      <div className="sort">
+        <SortBy
+          setArticles={setArticles}
+          setOrder={setOrder}
+          order={order}
+          sort={sort}
+          setSort={setSort}
+          articles={articles}
+        />
+      </div>
+
+      <div className="grid">
+        {articles.map(
+          ({
+            article_id,
+            article_img_url,
+            author,
+            comment_count,
+            created_at,
+            title,
+            topic,
+            votes,
+          }) => {
+            return (
+              <ArticleCard
+                key={article_id}
+                article_id={article_id}
+                article_img_url={article_img_url}
+                author={author}
+                comment_count={comment_count}
+                created_at={created_at}
+                title={title}
+                topic={topic}
+                votes={votes}
+              />
+            );
+          }
+        )}
+      </div>
     </>
   );
 };

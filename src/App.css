@@ -11,6 +11,22 @@ h1 {
   border-radius: 10px;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.sort {
+  display: flex;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 p {
   color: black;
 }
@@ -29,7 +45,8 @@ p {
   border: solid;
   border-radius: 10px;
   padding: 10px;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-weight: bold;
   display: flex;
   flex-direction: row;
